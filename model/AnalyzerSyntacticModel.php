@@ -59,8 +59,6 @@ class AnalyzerSyntacticModel
 
             } else if ($valueX > 0 && $valueX < 51) { // testa se o valor de x é terminal
 
-                //echo $valueX . ' = ' . $valueA . '<br>';
-
                 if ($valueX == $valueA) {
 
                     array_pop($this->stack);
@@ -68,11 +66,9 @@ class AnalyzerSyntacticModel
                     array_shift($this->resultLexo);
                     $this->parser();
 
-                    //echo $valueX . '<br>';
                     return false;
                 } else {
 
-                    //echo $valueX . ' = ' . $valueA . '<br>';
                     $this->messageError->setLine($this->resultLexo[0]->getLine())
                         ->setExpected($valueX);
                     return;
@@ -82,6 +78,9 @@ class AnalyzerSyntacticModel
             } else {
 
                 if ($valueX != 51) {
+
+                    // inserir if else aqui. Verificando se é maior que 88, entao realiza a acao semantica
+
                     if ($this->matriz->getMatriz($valueX, $valueA)) { // testa se exeste na matriz
 
                         array_pop($this->stack);
@@ -91,10 +90,8 @@ class AnalyzerSyntacticModel
                         $valueX = $this->getX($this->stack);
                         $this->setStackOfArray($this->stack, 'Inserção'); // guarda registro da pilha
 
-
                     } else {
 
-                      //  echo $valueX . ' = ' . $valueA . '<br>';
                         $this->messageError->setLine($this->resultLexo[0]->getLine())
                             ->setExpected($valueX);
                         return;
@@ -104,7 +101,6 @@ class AnalyzerSyntacticModel
 
             }
 
-            //echo $valueX . '<br>';
 
         } while($valueX != 51);
 
