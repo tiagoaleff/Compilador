@@ -1,1 +1,9 @@
-teset;
+program x;
+
+var 
+
+begin
+b:
+a:=35;
+writeln("teste qualquer",b);
+end.

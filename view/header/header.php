@@ -32,7 +32,7 @@ $teste = new MatrizAnalizeSintatica();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Analizador Léxico</title>
+    <title>Compilador</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/start.css">
 </head>
