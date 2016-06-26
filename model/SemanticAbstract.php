@@ -9,4 +9,9 @@
 class SemanticAbstract
 {
 
+    abstract protected function save()
+    {
+
+    }
+
 }
