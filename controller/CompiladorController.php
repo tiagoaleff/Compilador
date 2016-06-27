@@ -36,4 +36,14 @@ class CompiladorController
         return $this->analyzerSystactic->getErrorMessage();
     }
 
+    public function getSemantic()
+    {
+        return $this->analyzerSystactic->getSemantic();
+    }
+
+    public function getErroSemantico()
+    {
+        return $this->analyzerSystactic->getErroSemantico();
+    }
+
 }

@@ -32,7 +32,12 @@ class AnalyzerSyntacticController
 
     public function getSemantic()
     {
-        // .. implementar
+        return $this->syntactic->getSemanticRoute();
+    }
+
+    public function getErroSemantico()
+    {
+        return $this->syntactic->getErrorSemantic();
     }
 
 

@@ -11,15 +11,24 @@ $sysntactic = new AnalyzerSyntacticController();
 $compilador = new CompiladorController();
 $resultLexo = $compilador->getResultLexo();
 $resultSintatico = $compilador->getResultSystactic();
+$resultSemantic = $compilador->getSemantic();
 $errorMessage = $compilador->getErrorMessage();
 $file = new OpenFileController();
 $file = $file->getFileString();
+
+
+$resultErrorSemantic = $compilador->getErroSemantico();
+
+
+
 
 ?>
 
 <?php
 
 $teste = new MatrizAnalizeSintatica();
+
+
 
 ?>
 
@@ -87,5 +96,6 @@ $teste = new MatrizAnalizeSintatica();
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
 
 

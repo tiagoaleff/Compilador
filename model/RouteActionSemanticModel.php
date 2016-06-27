@@ -10,6 +10,7 @@ class RouteActionSemanticModel
 {
     private $stackFoundValues; // onde o analisador semantico irá procurar os valores
     private $semantic;
+    private $stackSemantic;
 
     public function __construct()
     {
@@ -32,29 +33,38 @@ class RouteActionSemanticModel
         switch ($action) {
 
             case 100 :
-                $this->semantic->saveNameAndCategoryAndLevelAndVerify();
+                $this->stackSemantic [] = $this->semantic->saveNameAndCategoryAndLevelAndVerify();
                 break;
             case 101 :
+                $this->stackSemantic [] = $this->semantic->saveCategoryAndLevel();
                 break;
             case 102 :
+                $this->stackSemantic [] = $this->semantic->saveNameAndVerify();
                 break;
 
         }
     }
 
+    /*
+     * Retoorna o resultado, ou seja, a tabela semantica
+     */
     public function getTableSemantic()
     {
         return $this->semantic->getTableSemantic();
     }
 
-    public function getName()
-    {
-        if (isset($this->stackFoundValues[count($this->stackFoundValues)])) {
-            return $this->stackFoundValues[count($this->stackFoundValues)];
-        }
 
-        return -1;
+    public function setNameVariable($name)
+    {
+        $this->semantic->setNameVariable($name);
     }
+
+    public function getMessageError()
+    {
+        return $this->semantic->getMessageErrorSemantic();
+    }
+
+
 
 
 }

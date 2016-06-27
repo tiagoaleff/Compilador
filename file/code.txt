@@ -1,10 +1,9 @@
-program x;
+program x; 
 
-const teste = int;
-var teste:int;
+label y;
 
-begin
-b:
-a:=35;
-writeln("teste qualquer",b);
+begin 
 end.
+
+
+
