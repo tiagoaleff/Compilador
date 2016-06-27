@@ -11,7 +11,6 @@ include_once 'SemanticBaseModel.php';
 class SemanticModel extends SemanticBaseModel
 {
 
-
     public function __construct()
     {
         parent::__construct();
@@ -31,14 +30,13 @@ class SemanticModel extends SemanticBaseModel
             $this->setTableSemantic($semantic);
         }
 
-        echo '<pre>';
-        print_r($this->stackFoundValues);
+        //echo '<pre>';
+//        print_r($this->stackFoundValues);
     }
 
     public  function saveCategoryAndLevel()
     {
         $this->setCategory()->setLevelPlus(0)->setBooAritmetic(false)->setCountParameters(0);
-        print_r($this->stackFoundValues);
     }
 
     public  function saveNameAndVerify()
@@ -52,11 +50,21 @@ class SemanticModel extends SemanticBaseModel
         $semantic = new TableSemantic($this->getNameVariable(), $this->getCategory(),
           $this->getLevel(), $this->getBooAritmetic());
 
-        $this->setTableSemantic($semantic);
+        $this->insertTable = $this->findValuesToVerify($semantic ->getNameVariable(), $semantic ->getLevel(),
+            $semantic ->getCategory(), "Variavel redeclarada. Linha: " . $this->getLine() .
+            " Nome da variavel: " . $semantic->getNameVariable() . " Categoria: " . $semantic->getCategory());
 
-        echo '<pre>';
+        if ($this->insertTable) {
+            $this->setTableSemantic($semantic);
+        }
+
+    }
+
+    public function __destruct()
+    {
+        //echo '<pre>';
         //print_r($this->stackFoundValues);
-        exit();
+        //exit();
     }
 
 }

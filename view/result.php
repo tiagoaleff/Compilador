@@ -86,8 +86,6 @@
                     <tbody>
                     <?php
 
-
-
                     if (!empty($resultSemantic)) :
                         foreach ($resultSemantic as $value) : ?>
                             <tr>

@@ -1,6 +1,7 @@
 program x; 
 
 label y;
+var y, y: int;
 
 begin 
 end.

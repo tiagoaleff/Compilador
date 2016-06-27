@@ -18,6 +18,8 @@ abstract class SemanticBaseModel
     protected $stackFoundValues;
     private $booAritmetic;
     private $countParameters;
+    private $line;
+    protected $insertTable;
 
 
     public function __construct()
@@ -31,6 +33,24 @@ abstract class SemanticBaseModel
         $this->setBooAritmetic(false);
         $this->setCountParameters(0);
 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLine()
+    {
+        return $this->line;
+    }
+
+    /**
+     * @param mixed $line
+     * @return SemanticBaseModel
+     */
+    public function setLine($line)
+    {
+        $this->line = $line;
+        return $this;
     }
 
     /**
@@ -81,7 +101,14 @@ abstract class SemanticBaseModel
      */
     public function setCategory()
     {
-        if (isset($this->stackFoundValues[count($this->stackFoundValues) - 2])) {
+        $category = $this->stackFoundValues[count($this->stackFoundValues) - 1] ;
+
+        if ($category == 1 || $category == 2 || $category == 3 ||
+            $category == 4 || $category == 5) {
+
+            $this->category = $this->stackFoundValues[count($this->stackFoundValues) - 1];
+
+        } else if (isset($this->stackFoundValues[count($this->stackFoundValues) - 2])) {
             $this->category = $this->stackFoundValues[count($this->stackFoundValues) - 2];
         }
         return $this;
@@ -195,6 +222,11 @@ abstract class SemanticBaseModel
     {
         $this->nameVariable = $name;
         return $this;
+    }
+
+    public function getInsertTable()
+    {
+        return $this->insertTable;
     }
 
 }

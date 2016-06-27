@@ -64,7 +64,13 @@ class RouteActionSemanticModel
         return $this->semantic->getMessageErrorSemantic();
     }
 
+    public function setLine($line)
+    {
+        $this->semantic->setLine($line);
+    }
 
-
-
+    public function getInsertTable()
+    {
+        return $this->semantic->getInsertTable();
+    }
 }

@@ -70,6 +70,7 @@ class AnalyzerSyntacticModel
 
                     if ($valueX == 25) {
                         $this->semanticRoute->setNameVariable($this->resultLexo[0]->getText());
+                        $this->semanticRoute->setLine($this->resultLexo[0]->getLine());
                     }
 
                     $this->semanticRoute->setStackFoundValues($valueX); // valor a ser analisado pelo semantico
@@ -77,8 +78,8 @@ class AnalyzerSyntacticModel
                     $this->setStackOfArray($this->stack, "Exclusão");
                     array_shift($this->resultLexo);
                     $this->parser();
-
                     return false;
+
                 } else {
 
                     $this->messageError->setLine($this->resultLexo[0]->getLine())
@@ -97,6 +98,7 @@ class AnalyzerSyntacticModel
                         $this->semanticRoute->routeSemantic($this->getX($this->stack));
                         array_pop($this->stack);
                         $valueX = $this->getX($this->stack);
+
                         continue;
 
 
