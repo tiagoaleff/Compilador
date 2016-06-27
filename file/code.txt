@@ -1,6 +1,6 @@
 program x;
 
-var 
+var teste:int;
 
 begin
 b:

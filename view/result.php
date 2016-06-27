@@ -2,6 +2,7 @@
 
     <div class="container">
             <h1>Resultado da Análise</h1>
+            <a href="/Compilador/view/">Voltar</a>
             <hr>
             <div>
                 <ul class="nav nav-tabs" role="tablist">
@@ -58,11 +59,9 @@
                             <?php
                             if (!empty($resultSintatico)) :
                                 foreach ($resultSintatico as $value) : ?>
-
                                     <tr>
                                         <td><?php echo $value->getStatus(); ?></td>
                                         <td><?php echo $value->getArrayStack(); ?></td>
-
                                     </tr>
                                     <?php
                                 endforeach;

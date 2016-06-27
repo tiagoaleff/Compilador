@@ -7,10 +7,6 @@ include '../model/MatrizAnalizeSintatica.php';
 include '../model/ProducaoCodificacaoModel.php';
 include '../controller/OpenFileController.php';
 
-/*$analyze = new AnalyzerLexoController();
-new ProducaoCodificacaoModel();
-$result = $analyze->getResult();
-*/
 $sysntactic = new AnalyzerSyntacticController();
 $compilador = new CompiladorController();
 $resultLexo = $compilador->getResultLexo();
@@ -24,14 +20,15 @@ $file = $file->getFileString();
 <?php
 
 $teste = new MatrizAnalizeSintatica();
-//echo $teste->getMatriz(86,47);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Compilador</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/start.css">
@@ -90,3 +87,5 @@ $teste = new MatrizAnalizeSintatica();
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+
