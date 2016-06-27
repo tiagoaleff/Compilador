@@ -11,7 +11,7 @@ include_once "SemanticAbstract.php";
 abstract class SemanticBaseModel
 {
     protected $category; // guarda o valor da categoria
-    private $level; // guarda o valor do nivel
+    protected $level; // guarda o valor do nivel
     protected $nameVariable; // nome da variavel inserida na tabela
     private $tableSemantic;  // guarda os valores atuais para a tabela semantica
     protected $msgError; // guarda um array com todos os erros encontrados
@@ -175,9 +175,14 @@ abstract class SemanticBaseModel
         return $this->level;
     }
 
-    public function setLevelPlus($value)
+    public function setLevelPlus()
     {
-        $this->level  += $value;
+        $this->level = 0;
+
+        if ($this->getCategory() == 'procedure') {
+            $this->level++;
+        }
+
         return $this;
     }
 
@@ -202,10 +207,11 @@ abstract class SemanticBaseModel
     {
         foreach ($this->tableSemantic as $valueTable) {
 
-            if ($valueTable->getNameVariable() == $name && $valueTable->getCategory() == $category
-                && $valueTable->getLevel() >= $level) {
+            if (($valueTable->getNameVariable() == $name && $valueTable->getCategory() == $category)
+                && ($valueTable->getLevel() >= $level)) {
                 $this->msgError [] = $message;
 
+                echo $name . ' ' . $level . ' ' . $category . ' ' . $message; echo '<br>';
                 return false;
             }
 
@@ -227,6 +233,17 @@ abstract class SemanticBaseModel
     public function getInsertTable()
     {
         return $this->insertTable;
+    }
+
+    public function setLessLevel()
+    {
+        $this->level--;
+    }
+
+    public function setLevelLocal()
+    {
+        $this->level = "Local";
+
     }
 
 }

@@ -42,6 +42,15 @@ class RouteActionSemanticModel
                 $this->stackSemantic [] = $this->semantic->saveNameAndVerify();
                 break;
 
+            case 120:
+                //$this->semantic->useVariableDeclared();
+                break;
+            case 121:
+                //$this->semantic->setLessLevel();
+                break;
+            case 123 :
+                //$this->semantic->setLevelLocal();
+                break;
         }
     }
 

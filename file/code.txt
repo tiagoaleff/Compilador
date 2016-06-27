@@ -1,10 +1,11 @@
 program x; 
 
-label y;
-var y, y: int;
+label teste;
+
+procedure teste (v:int);
+begin
+call teste;
+end;
 
 begin 
 end.
-
-
-

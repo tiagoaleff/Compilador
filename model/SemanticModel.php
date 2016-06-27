@@ -19,46 +19,63 @@ class SemanticModel extends SemanticBaseModel
     public  function saveNameAndCategoryAndLevelAndVerify()
     {
 
-        $this->setCategory()->setLevelPlus(0)->setBooAritmetic(false)->setCountParameters(0);
+        $this->setCategory()->setLevelPlus()->setBooAritmetic(false)->setCountParameters(0);
         $semantic = new TableSemantic($this->getNameVariable(), $this->getCategory(),
             $this->getLevel(), $this->getBooAritmetic());
 
-        $inserir = $this->findValuesToVerify($this->getNameVariable(), $this->getLevel(),
-            $this->getCategory(), "Variavel redeclarada");
+        $this->findValuesToVerify($this->getNameVariable(), $this->getLevel(),
+            $semantic ->getCategory(), "Variavel redeclarada. Linha: " . $this->getLine() .
+            " Nome da variavel: " . $semantic->getNameVariable() . " .Categoria: " . $semantic->getCategory());
 
-        if ($inserir) {
-            $this->setTableSemantic($semantic);
-        }
+        $this->setTableSemantic($semantic);
 
-        //echo '<pre>';
-//        print_r($this->stackFoundValues);
     }
 
     public  function saveCategoryAndLevel()
     {
-        $this->setCategory()->setLevelPlus(0)->setBooAritmetic(false)->setCountParameters(0);
+        $this->setCategory()->setLevelPlus()->setBooAritmetic(false)->setCountParameters(0);
     }
 
     public  function saveNameAndVerify()
     {
 
-        if ($this->getCategory() != null && $this->getLevel() != null) {
-            $this->msgError [] = "Configuraçao para esta variavel nao 'ste!";
-            return false;
-        }
-
         $semantic = new TableSemantic($this->getNameVariable(), $this->getCategory(),
-          $this->getLevel(), $this->getBooAritmetic());
+            $this->getLevel(), $this->getBooAritmetic());
 
         $this->insertTable = $this->findValuesToVerify($semantic ->getNameVariable(), $semantic ->getLevel(),
             $semantic ->getCategory(), "Variavel redeclarada. Linha: " . $this->getLine() .
-            " Nome da variavel: " . $semantic->getNameVariable() . " Categoria: " . $semantic->getCategory());
+            " Nome da variavel: " . $semantic->getNameVariable() . " .Categoria: " . $semantic->getCategory());
 
-        if ($this->insertTable) {
-            $this->setTableSemantic($semantic);
-        }
+        $this->setTableSemantic($semantic);
 
     }
+
+    // # 120
+    public function useVariableDeclared()
+    {
+
+        foreach ($this->getTableSemantic() as $value) {
+
+            if ($value->getNameVariable() == $this->nameVariable
+                && $value->getCategory() == $this->getCategory()) {
+
+                echo $this->getNameVariable() . '<br>';
+                echo $this->getLevel() . '<br>';
+                echo $this->getCategory() . '<br>';
+                echo $this->getLine() . '<br>';
+
+
+                $teste = $this->findValuesToVerify($this->getNameVariable(), $this->getLevel(),
+                    $this->getCategory(), "Variavel não declarada. Linha: " . $this->getLine() .
+                    " Nome da variavel: " . $this->getNameVariable() . " .Categoria: " . $this->getCategory());
+            }
+        }
+
+
+    }
+
+
+    // # 121
 
     public function __destruct()
     {

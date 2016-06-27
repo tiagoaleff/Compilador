@@ -2,7 +2,7 @@
 
     <div class="container">
     <h1>Resultado da Análise</h1>
-    <a href="/Compilador/view/">Voltar</a>
+    <a href="../view/">Voltar</a>
     <hr>
     <div>
         <ul class="nav nav-tabs" role="tablist">
