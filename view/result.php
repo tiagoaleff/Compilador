@@ -7,8 +7,8 @@
             <div>
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Analisador Lexo</a></li>
-                    <li role="presentation" class="active" ><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Analisador Sintático</a></li>
-                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Analisador Semântico</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Analisador Sintático</a></li>
+                    <li role="presentation"class="active"  ><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Analisador Semântico</a></li>
                     <li role="presentation"><a href="#codefont" aria-controls="codefont" role="tab" data-toggle="tab">Código Fonte</a></li>
                 </ul>
 
@@ -41,7 +41,7 @@
                         </table>
                     </div>
 
-                    <div role="tabpanel" class="tab-pane active" id="profile">
+                    <div role="tabpanel" class="tab-pane" id="profile">
 
                         <?php if (!empty($errorMessage)) : ?>
                             <div class="alert alert-danger" role="alert">
@@ -70,7 +70,7 @@
 
                     </div>
 
-                    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+                    <div role="tabpanel" class="tab-pane active" id="messages">...</div>
                     <div role="tabpanel" class="tab-pane" id="settings">...</div>
 
                     <div role="tabpanel" class="tab-pane" id="codefont">

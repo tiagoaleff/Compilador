@@ -14,7 +14,8 @@ class AnalyzerSyntacticModel
     private $stackOfArray; // guarda o estado da pilha em um array;
     private $stack; // guarda a pilha atual
     private $messageError;
-    private $stackFoundValues;
+    private $stackFoundValues; // array com os valores excluidos
+    private $semanticRoute; // model SemanticModel
 
     public function __construct()
     {
@@ -22,7 +23,7 @@ class AnalyzerSyntacticModel
         include_once 'ProducaoCodificacaoModel.php';
         include_once 'ResultSyntactic.php';
         include_once 'ErrorModel.php';
-        include_once '';
+        include_once 'RouteActionSemanticModel.php';
 
         $this->matriz = new MatrizAnalizeSintatica();
         $this->producaoCodificacao = new ProducaoCodificacaoModel();
@@ -36,7 +37,9 @@ class AnalyzerSyntacticModel
         array_push($this->stack, 53);
 
         $this->setStackOfArray($this->stack, 'Inicial');
+        // semantico
         $this->stackFoundValues = [];
+        $this->semanticRoute= new RouteActionSemanticModel();
 
     }
 
@@ -65,7 +68,7 @@ class AnalyzerSyntacticModel
 
                 if ($valueX == $valueA) {
 
-                    $this->stackFoundValues [] = $valueX; // valor a ser analisado pelo semantico
+                    $this->semanticRoute->setStackFoundValues($valueX); // valor a ser analisado pelo semantico
                     array_pop($this->stack);
                     $this->setStackOfArray($this->stack, "Exclusão");
                     array_shift($this->resultLexo);
@@ -87,6 +90,10 @@ class AnalyzerSyntacticModel
                     // inserir if else aqui. Verificando se é maior que 88, entao realiza a acao semantica
                     if ($valueX > 99 && $valueX < 183) {
 
+                        $this->semanticRoute->routeSemantic($this->getX($this->stack));
+                        array_pop($this->stack);
+                        $valueX = $this->getX($this->stack);
+                        continue;
 
 
                     } else if ($this->matriz->getMatriz($valueX, $valueA)) { // testa se exeste na matriz
@@ -161,5 +168,12 @@ class AnalyzerSyntacticModel
         return $this->messageError->getMessage();
     }
 
+    /**
+     * @return RouteActionSemanticModel
+     */
+    public function getSemanticRoute()
+    {
+        return $this->semanticRoute;
+    }
 
 }

@@ -30,4 +30,10 @@ class AnalyzerSyntacticController
         return $this->syntactic->getMessageError();
     }
 
+    public function getSemantic()
+    {
+        // .. implementar
+    }
+
+
 }

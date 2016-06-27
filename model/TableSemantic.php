@@ -14,6 +14,17 @@ class TableSemantic
     private $aritmetico; // valor booleano se é aritmetico
     private $countParameters;
 
+    public function __construct($name, $category, $level, $countParameters, $aritmetico = false)
+    {
+        $this->setNameVariable($name);
+        $this->setCategory($category);
+        $this->setLevel($level);
+        $this->setCountParameters($countParameters);
+
+        if ($aritmetico)
+            $this->setAritmetico($aritmetico);
+    }
+
     /**
      * @return mixed
      */
