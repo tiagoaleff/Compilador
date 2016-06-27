@@ -13,7 +13,7 @@ abstract class SemanticAbstract
     // #101
     abstract protected function saveCategoryAndLevel($category, $level);
     // #102 -> processo final, tbm verifica se ja existe na tabela
-    abstract protected function sabeNameAndVerify($nameVariable);
+    abstract protected function saveNameAndVerify($nameVariable);
 
     // ...
 

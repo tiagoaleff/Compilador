@@ -14,6 +14,7 @@ class AnalyzerSyntacticModel
     private $stackOfArray; // guarda o estado da pilha em um array;
     private $stack; // guarda a pilha atual
     private $messageError;
+    private $stackFoundValues;
 
     public function __construct()
     {
@@ -21,6 +22,8 @@ class AnalyzerSyntacticModel
         include_once 'ProducaoCodificacaoModel.php';
         include_once 'ResultSyntactic.php';
         include_once 'ErrorModel.php';
+        include_once '';
+
         $this->matriz = new MatrizAnalizeSintatica();
         $this->producaoCodificacao = new ProducaoCodificacaoModel();
         $this->messageError = new ErrorModel();
@@ -33,6 +36,7 @@ class AnalyzerSyntacticModel
         array_push($this->stack, 53);
 
         $this->setStackOfArray($this->stack, 'Inicial');
+        $this->stackFoundValues = [];
 
     }
 
@@ -61,6 +65,7 @@ class AnalyzerSyntacticModel
 
                 if ($valueX == $valueA) {
 
+                    $this->stackFoundValues [] = $valueX; // valor a ser analisado pelo semantico
                     array_pop($this->stack);
                     $this->setStackOfArray($this->stack, "Exclusão");
                     array_shift($this->resultLexo);
@@ -80,8 +85,11 @@ class AnalyzerSyntacticModel
                 if ($valueX != 51) {
 
                     // inserir if else aqui. Verificando se é maior que 88, entao realiza a acao semantica
+                    if ($valueX > 99 && $valueX < 183) {
 
-                    if ($this->matriz->getMatriz($valueX, $valueA)) { // testa se exeste na matriz
+
+
+                    } else if ($this->matriz->getMatriz($valueX, $valueA)) { // testa se exeste na matriz
 
                         array_pop($this->stack);
                         $this->setStackOfArray($this->stack, 'Exclusão'); // guarda registro da pilha
