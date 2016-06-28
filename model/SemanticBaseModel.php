@@ -203,15 +203,13 @@ abstract class SemanticBaseModel
         return $this;
     }
 
-    protected function findValuesToVerify($name, $level, $category, $message)
+    protected function findValuesToVerify($name, $message)
     {
         foreach ($this->tableSemantic as $valueTable) {
 
-            if (($valueTable->getNameVariable() == $name && $valueTable->getCategory() == $category)
-                && ($valueTable->getLevel() >= $level)) {
+            if (($valueTable->getNameVariable() == $name)) {
                 $this->msgError [] = $message;
 
-                echo $name . ' ' . $level . ' ' . $category . ' ' . $message; echo '<br>';
                 return false;
             }
 

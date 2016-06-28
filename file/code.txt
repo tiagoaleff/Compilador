@@ -2,10 +2,7 @@ program x;
 
 label teste;
 
-procedure teste (v:int);
-begin
-call teste;
-end;
 
-begin 
+begin
+ call teste;
 end.

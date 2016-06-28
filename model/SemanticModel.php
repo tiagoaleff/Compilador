@@ -23,8 +23,7 @@ class SemanticModel extends SemanticBaseModel
         $semantic = new TableSemantic($this->getNameVariable(), $this->getCategory(),
             $this->getLevel(), $this->getBooAritmetic());
 
-        $this->findValuesToVerify($this->getNameVariable(), $this->getLevel(),
-            $semantic ->getCategory(), "Variavel redeclarada. Linha: " . $this->getLine() .
+        $this->findValuesToVerify($this->getNameVariable(), "Variavel redeclarada. Linha: " . $this->getLine() .
             " Nome da variavel: " . $semantic->getNameVariable() . " .Categoria: " . $semantic->getCategory());
 
         $this->setTableSemantic($semantic);
@@ -38,45 +37,71 @@ class SemanticModel extends SemanticBaseModel
 
     public  function saveNameAndVerify()
     {
-
         $semantic = new TableSemantic($this->getNameVariable(), $this->getCategory(),
             $this->getLevel(), $this->getBooAritmetic());
 
-        $this->insertTable = $this->findValuesToVerify($semantic ->getNameVariable(), $semantic ->getLevel(),
-            $semantic ->getCategory(), "Variavel redeclarada. Linha: " . $this->getLine() .
+        $this->insertTable = $this->findValuesToVerify($semantic ->getNameVariable(), "Variavel redeclarada. Linha: " . $this->getLine() .
             " Nome da variavel: " . $semantic->getNameVariable() . " .Categoria: " . $semantic->getCategory());
-
         $this->setTableSemantic($semantic);
-
     }
 
     // # 120
     public function useVariableDeclared()
     {
-
         foreach ($this->getTableSemantic() as $value) {
 
-            if ($value->getNameVariable() == $this->nameVariable
-                && $value->getCategory() == $this->getCategory()) {
+            if ($value->getNameVariable() == $this->getNameVariable()){
 
-                echo $this->getNameVariable() . '<br>';
-                echo $this->getLevel() . '<br>';
-                echo $this->getCategory() . '<br>';
-                echo $this->getLine() . '<br>';
+                return true;
 
-
-                $teste = $this->findValuesToVerify($this->getNameVariable(), $this->getLevel(),
-                    $this->getCategory(), "Variavel não declarada. Linha: " . $this->getLine() .
-                    " Nome da variavel: " . $this->getNameVariable() . " .Categoria: " . $this->getCategory());
             }
+
         }
 
+        $this->msgError [] = "Variavel não declarada. Linha: " . $this->getLine() . ' : ' . $this->getNameVariable();
+    }
+    // # 121
+    public function labelAndProcedure()
+    {
 
+        $command = '';
+
+        if (isset($this->stackFoundValues[count($this->stackFoundValues) - 2])) {
+            $command = $this->stackFoundValues[count($this->stackFoundValues) - 2];
+        }
+
+        //echo $command; exit();
+
+        if (!$this->getValueTableSemantic($command, $this->getNameVariable())) {
+            $this->msgError [] = 'Linha:' . $this->getLine() . '. Nome: ' . $this->getNameVariable() .
+                ' .Message: Variavel  não foi declarada para ser chamada!';
+        }
     }
 
+    private function getValueTableSemantic($category, $value)
+    {
+
+        foreach ($this->getTableSemantic() as $tableItem) {
+
+            if ($tableItem->getNameVariable() == $value) {
+
+                var_dump($category );
+
+                if ($category == 12 && $tableItem->getCategory() == 'label') {
+                    return true;
+                } else if ($category == 11 && $tableItem->getCategory() == 'procedure') {
+                    return true;
+                }
+
+
+            }
+
+        }
+
+        return false;
+    }
 
     // # 121
-
     public function __destruct()
     {
         //echo '<pre>';

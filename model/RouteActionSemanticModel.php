@@ -43,10 +43,10 @@ class RouteActionSemanticModel
                 break;
 
             case 120:
-                //$this->semantic->useVariableDeclared();
+                $this->semantic->useVariableDeclared();
                 break;
-            case 121:
-                //$this->semantic->setLessLevel();
+            case 124:
+                $this->semantic->labelAndProcedure();
                 break;
             case 123 :
                 //$this->semantic->setLevelLocal();

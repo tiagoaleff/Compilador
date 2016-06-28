@@ -94,7 +94,7 @@ class AnalyzerSyntacticModel
 
                     // inserir if else aqui. Verificando se é maior que 88, entao realiza a acao semantica
                     if ($valueX > 99 && $valueX < 183) {
-
+                        $this->semanticRoute->setLine($this->resultLexo[0]->getLine());
                         $this->semanticRoute->routeSemantic($this->getX($this->stack));
                         array_pop($this->stack);
                         $valueX = $this->getX($this->stack);
